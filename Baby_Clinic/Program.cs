@@ -106,16 +106,16 @@ try
     app.UseMiddleware<ExceptionHandlingMiddleware>();
     app.UseMiddleware<CorrelationIdMiddleware>();
 
+    // migrate + נתוני דמו אם הבסיס ריק (גם ב-Render, שם אין הרצה ידנית של dotnet ef)
+    await DbInitializer.InitializeAsync(app.Services);
+
+    // Swagger פתוח גם בשרת המפורסם, כדי שאפשר יהיה לבדוק את ה-API בלי לקוח
+    app.UseSwagger();
+    app.UseSwaggerUI();
+
+    // ב-Render ה-HTTPS מסתיים ב-proxy והקונטיינר מקבל HTTP בלבד
     if (app.Environment.IsDevelopment())
-    {
-        // migrate + נתוני דמו אם הבסיס ריק
-        await DbInitializer.InitializeAsync(app.Services);
-
-        app.UseSwagger();
-        app.UseSwaggerUI();
-    }
-
-    app.UseHttpsRedirection();
+        app.UseHttpsRedirection();
 
     app.UseCors(ClientCorsPolicy);
     app.UseAuthentication();

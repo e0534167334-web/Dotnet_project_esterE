@@ -1,0 +1,12 @@
+**/bin/
+**/obj/
+**/logs/
+**/*.user
+.git/
+.vs/
+.github/
+packages/
+TestResults/
+Baby_Clinic.Tests/
+*.docx
+*.md
