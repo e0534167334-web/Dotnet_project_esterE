@@ -59,3 +59,31 @@ nunit-*.xml
 *.user
 *.suo
    .vs/
+
+## --- Baby_Clinic additions ---
+
+# Visual Studio / Rider
+.vs/
+.idea/
+*.userprefs
+*.rsuser
+
+# NuGet (packages.config folder of the old Tests template)
+packages/
+
+# Test results
+TestResults/
+*.trx
+
+# NLog output
+logs/
+*.log
+
+# Secrets that must never be committed (the project uses User Secrets)
+appsettings.*.local.json
+*.pfx
+
+# Local documentation (kept on disk, not in the repository)
+*.docx
+הערות_ועדכונים.md
+תשובות.md
