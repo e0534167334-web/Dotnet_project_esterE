@@ -9,28 +9,20 @@ services:
     dockerfilePath: ./Dockerfile
     healthCheckPath: /swagger/index.html
     envVars:
-      # הגדרות משותפות מה-Environment Group (מוגדר למטה)
-      - fromGroup: baby-clinic-settings
-      # משתנים שלא יכולים לשבת בקבוצה: הפניה למסד הנתונים וערך שמוזן ידנית (sync: false)
-      - key: ConnectionStrings__DefaultConnection
-        fromDatabase:
-          name: baby-clinic-db
-          property: connectionString
-      # כתובת הלקוח (React) ב-Render - מוזנת ידנית ב-Dashboard
-      - key: Cors__AllowedOrigins__0
-        sync: false
-
-# Environment Group: נוצר ב-Render כקבוצה עצמאית שאפשר לערוך במקום אחד ולקשר לשירותים נוספים
-envVarGroups:
-  - name: baby-clinic-settings
-    envVars:
       - key: ASPNETCORE_ENVIRONMENT
         value: Production
       - key: PORT
         value: "8080"
+      - key: ConnectionStrings__DefaultConnection
+        fromDatabase:
+          name: baby-clinic-db
+          property: connectionString
       # מפתח אקראי שנוצר פעם אחת ב-Render (44 תווים, מעל 32 הבתים הנדרשים)
       - key: Jwt__Key
         generateValue: true
+      # כתובת הלקוח (React) כשיעלה - לעדכן ידנית ב-Dashboard
+      - key: Cors__AllowedOrigins__0
+        sync: false
 
 databases:
   - name: baby-clinic-db
