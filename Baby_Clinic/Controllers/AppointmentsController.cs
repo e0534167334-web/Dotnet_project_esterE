@@ -23,6 +23,7 @@ public class AppointmentsController : ApiControllerBase
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+    // שלב 7: 409 מתועד ב-Swagger - המשבצת נתפסה ע"י הורה אחר
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
     public async Task<IActionResult> Book([FromBody] BookAppointmentRequest request, CancellationToken ct)
     {

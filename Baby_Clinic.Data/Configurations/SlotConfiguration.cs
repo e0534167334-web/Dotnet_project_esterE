@@ -17,7 +17,9 @@ public class SlotConfiguration : IEntityTypeConfiguration<Slot>
         builder.Property(s => s.NurseName).IsRequired().HasMaxLength(100);
         builder.Property(s => s.Status).IsRequired().HasConversion<string>().HasMaxLength(20);
 
-        // Concurrency token: uint + IsRowVersion ממופה ע"י Npgsql לעמודת המערכת xmin
+        // ===== שלב 7 – תחרות על משאב (2/4): מיפוי ה-token =====
+        // Concurrency token: uint + IsRowVersion ממופה ע"י Npgsql לעמודת המערכת xmin.
+        // EF מוסיף ל-UPDATE את התנאי WHERE xmin = <הערך שנטען>; אם הורה אחר כבר עדכן - 0 שורות מתעדכנות
         builder.Property(s => s.Version).IsRowVersion();
 
         // many-to-many: סוגי הביקור שהמשבצת פתוחה אליהם

@@ -81,6 +81,8 @@ public class AppointmentService : IAppointmentService
         }
         catch (ConcurrencyConflictException)
         {
+            // ===== שלב 7 – תחרות על משאב (4/4): התנגשות -> Conflict + Warning בלוג =====
+            // הורה אחר שמר את המשבצת בין הטעינה שלנו לשמירה. ה-Controller יחזיר 409
             _logger.LogWarning("Booking conflict: slot {SlotId} was taken by another request (child {ChildId}).",
                 slot.Id, child.Id);
             return Result<AppointmentResponse>.Fail(ResultStatus.Conflict,

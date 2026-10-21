@@ -28,7 +28,7 @@ public abstract class ApiControllerBase : ControllerBase
             ResultStatus.Unauthorized => StatusCodes.Status401Unauthorized,
             ResultStatus.Forbidden => StatusCodes.Status403Forbidden,
             ResultStatus.NotFound => StatusCodes.Status404NotFound,
-            ResultStatus.Conflict => StatusCodes.Status409Conflict,
+            ResultStatus.Conflict => StatusCodes.Status409Conflict, // שלב 7: משבצת שנתפסה -> 409
             _ => StatusCodes.Status500InternalServerError
         };
 

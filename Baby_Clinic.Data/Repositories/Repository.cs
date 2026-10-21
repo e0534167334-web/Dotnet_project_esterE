@@ -31,7 +31,8 @@ public class Repository<T> : IRepository<T> where T : class
         }
         catch (DbUpdateConcurrencyException ex)
         {
-            // ה-Service לא מכיר EF, ולכן מקבל חריגה משלנו
+            // ===== שלב 7 – תחרות על משאב (3/4): תרגום החריגה =====
+            // ה-Service לא מכיר EF, ולכן מקבל חריגה משלנו (מ-Core)
             throw new ConcurrencyConflictException("The record was modified by another request.", ex);
         }
     }
