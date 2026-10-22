@@ -20,9 +20,9 @@ services:
       # מפתח אקראי שנוצר פעם אחת ב-Render (44 תווים, מעל 32 הבתים הנדרשים)
       - key: Jwt__Key
         generateValue: true
-      # כתובת הלקוח (React) כשיעלה - לעדכן ידנית ב-Dashboard
+      # כתובת הלקוח (React) ב-Render
       - key: Cors__AllowedOrigins__0
-        sync: false
+        value: https://baby-clinic-client.onrender.com
 
 databases:
   - name: baby-clinic-db
